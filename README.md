@@ -1,5 +1,15 @@
 
 
+| **Limit Type**                  | **Transaction Level**                                                                                 | **Execution Context Level**                                                                 |
+|---------------------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| **SOQL Queries**                | Up to 100 queries per transaction. Certified managed packages have their own limits, up to 1,100 total across namespaces. | Governed by individual transaction limits; no separate context-level limit.                 |
+| **DML Statements**              | Up to 150 statements per transaction. Certified managed packages have their own limits, up to 1,650 total across namespaces. | Governed by individual transaction limits; no separate context-level limit.                 |
+| **CPU Time**                    | Maximum of 10,000 milliseconds per transaction.                                                        | Governed by individual transaction limits; no separate context-level limit.                 |
+| **Heap Size**                   | 6 MB for synchronous and 12 MB for asynchronous transactions.                                          | Governed by individual transaction limits; no separate context-level limit.                 |
+| **Callouts**                    | Maximum of 100 HTTP callouts per transaction.                                                          | Governed by individual transaction limits; no separate context-level limit.                 |
+| **Total Number of Query Rows**  | Up to 50,000 rows retrieved per transaction.                                                           | Governed by individual transaction limits; no separate context-level limit.                 |
+| **Maximum Execution Time**      | Governed by individual transaction limits.                                                             | Total time allowed for all transactions within an execution context to complete.            |
+
 | **Governor Limit**                                 | **Execution Context-Level Limit**                                    | **Transaction-Level Limit**                                      |
 |----------------------------------------------------|------------------------------------------------------------------------|---------------------------------------------------------------------|
 | **Total Number of SOQL Queries**                   | 100 (Synchronous) / 200 (Asynchronous)                                 | 100 (Synchronous) / 200 (Asynchronous)                              |
