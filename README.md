@@ -1,4 +1,6 @@
 
+To retrieve the **transaction ID** in Salesforce Apex, you can use the **Request.getCurrent().getRequestId()** method, which was introduced in the Winter '21 release. This method allows you to obtain a unique identifier for the current request, which can be used to group log entries or track operations within the same transaction context.
+However, it's important to note that **synchronous transactions do not have a specific transaction ID like batch jobs do**. If you need a unique identifier for a synchronous transaction, you may need to generate one yourself, such as using a UUID.
 
 In Salesforce, governor limits are generally applied at the **transaction level** because each transaction operates independently. However, the term "execution context" often refers to a broader scope in which multiple transactions can occur, especially in scenarios involving triggers, batch jobs, or asynchronous processing.
 
