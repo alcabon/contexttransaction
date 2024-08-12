@@ -1,4 +1,7 @@
 
+
+https://architect.salesforce.com/1/asset/immutable/s/e6cf2ac/assets/images/Salesforce-Order-Of-Execution-Diagram.png
+
 In Salesforce, Apex's execution context and transaction are closely related but not the same thing. Here's how they differ:
 
 1. Execution Context:
