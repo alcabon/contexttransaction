@@ -1,7 +1,7 @@
 
 In Salesforce, governor limits are crucial for maintaining the efficient use of resources in a multi-tenant environment. These limits are enforced at both the transaction level and the execution context level, ensuring that no single transaction or context monopolizes system resources.
 
-**Transaction-Level Governor Limits**
+- **Transaction-Level Governor Limits**
 Transaction-level limits apply to individual transactions, which are isolated units of work that must complete successfully for changes to be committed. Here are some key transaction-level limits:
     - SOQL Queries: A maximum of 100 SOQL queries can be executed in a single transaction. However, if certified managed packages are involved, each package gets its own limit, allowing up to 1,100 SOQL queries cumulatively across namespaces.
     - DML Statements: Up to 150 DML statements are allowed per transaction. Similar to SOQL queries, certified managed packages have their own limits, with a cumulative total of 1,650 DML statements possible across namespaces.
@@ -9,7 +9,7 @@ Transaction-level limits apply to individual transactions, which are isolated un
     - Heap Size: The total heap size is limited to 6 MB for synchronous and 12 MB for asynchronous transactions.
     - Callouts: A maximum of 100 HTTP callouts can be made in a transaction.
 
-**Execution Context-Level Governor Limits**
+- **Execution Context-Level Governor Limits**
 Execution context-level limits encompass everything that happens from the start of a request to the end, including all operations triggered by a DML event. These limits ensure that the overall environment remains stable and efficient:
     - Total Number of SOQL Queries: While each transaction is limited, the execution context can involve multiple transactions, each with its own limits.
     - Total Heap Size and CPU Time: These limits apply to the entire execution context, affecting all transactions within it. The execution context must manage resources efficiently to avoid exceeding these limits.
