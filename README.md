@@ -1,5 +1,18 @@
 
 
+In Salesforce, governor limits are generally applied at the **transaction level** because each transaction operates independently. However, the term "execution context" often refers to a broader scope in which multiple transactions can occur, especially in scenarios involving triggers, batch jobs, or asynchronous processing.
+
+Here’s a clarification:
+
+- **Transaction-Level Governor Limits:**
+These are the most commonly referred limits and are enforced within each individual transaction. Every transaction is independent and has its own set of limits, which includes SOQL queries, DML operations, CPU time, heap size, etc.
+- **Execution Context-Level Considerations:**
+While most governor limits are enforced at the transaction level, the execution context itself can involve multiple transactions. For example, in an asynchronous batch job, each batch execution is a separate transaction but still within the same overall execution context.
+- **Execution context-level considerations** mainly involve the cumulative impact of multiple transactions or operations that may occur as part of a broader execution context. This includes:
+    - **Shared State:** Static variables and the state of other global variables persist across transactions within the same execution context.
+    - **Governor Limits Impact:** The cumulative effect of operations across multiple transactions could indirectly influence the performance or behavior within a broader execution context, though each transaction is still independently governed.
+In summary, Salesforce governor limits are primarily enforced at the transaction level, but the concept of an execution context is important in understanding how multiple transactions relate to each other, particularly in bulk operations or asynchronous processes. There aren't separate "execution context" governor limits per se; rather, the limits are defined at the transaction level and apply to each individual transaction within that context.
+
 | **Limit Type**                  | **Transaction Level**                                                                                 | **Execution Context Level**                                                                 |
 |---------------------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
 | **SOQL Queries**                | Up to 100 queries per transaction. Certified managed packages have their own limits, up to 1,100 total across namespaces. | Governed by individual transaction limits; no separate context-level limit.                 |
@@ -42,58 +55,58 @@ In Salesforce, governor limits are in place to ensure efficient use of shared re
 
 Here's a list of key **Execution Context-Level Governor Limits:**
 
-**1. Total Number of SOQL Queries**
+- **1. Total Number of SOQL Queries**
 Limit: 100 (Synchronous) / 200 (Asynchronous)
 Description: This is the maximum number of SOQL queries that can be issued within a single execution context.
-**2. Total Number of Records Retrieved by SOQL Queries**
+- **2. Total Number of Records Retrieved by SOQL Queries**
 Limit: 50,000
 Description: This limit applies to the total number of rows retrieved by SOQL queries across the entire execution context.
-**3. Total Number of DML Statements**
+- **3. Total Number of DML Statements**
 Limit: 150
 Description: The maximum number of DML operations (like insert, update, delete, or undelete) that can be executed within a single execution context.
-**4. Total Number of Records Processed by DML Statements**
+- **4. Total Number of Records Processed by DML Statements**
 Limit: 10,000
 Description: The total number of records that can be inserted, updated, deleted, or undeleted within a single execution context.
-**5. Total Number of Callouts (HTTP Requests or Web Service Calls)**
+- **5. Total Number of Callouts (HTTP Requests or Web Service Calls)**
 Limit: 100
 Description: The maximum number of callouts to external services that can be made within a single execution context.
-**6. Total Number of Apex Callouts (HTTP Request or Web Service Calls) Time**
+- **6. Total Number of Apex Callouts (HTTP Request or Web Service Calls) Time**
 Limit: 120 seconds (Synchronous) / 300 seconds (Asynchronous)
 Description: The total time allowed for all callouts within an execution context.
-**7. Total Number of SendEmail Methods**
+- **7. Total Number of SendEmail Methods**
 Limit: 10
 Description: The maximum number of Messaging.sendEmail method calls allowed within a single execution context.
-**8. Total Number of SOSL Queries**
+- **8. Total Number of SOSL Queries**
 Limit: 20
 Description: The maximum number of SOSL queries allowed within a single execution context.
-**9. Total Heap Size**
+- **9. Total Heap Size**
 Limit: 6 MB (Synchronous) / 12 MB (Asynchronous)
 Description: The maximum amount of memory allocated to store objects, variables, and state in the execution context.
-**10. Total Number of Callouts**
+- **10. Total Number of Callouts**
 Limit: 100
 Description: The maximum number of HTTP requests or web service calls to external systems in a single execution context.
-**11. Maximum CPU Time**
+- **11. Maximum CPU Time**
 Limit: 10,000 milliseconds (Synchronous) / 60,000 milliseconds (Asynchronous)
 Description: The total CPU time consumed by all Apex code in a single execution context.
-**12. Total Number of Queueable Jobs Added**
+- **12. Total Number of Queueable Jobs Added**
 Limit: 50
 Description: The maximum number of queueable jobs that can be added within a single execution context.
-**13. Maximum Execution Time for a Single Transaction**
+- **13. Maximum Execution Time for a Single Transaction**
 Limit: 10 minutes
 Description: The maximum time allowed for a transaction to complete within an execution context.
-**14. Total Number of Future Methods**
+- **14. Total Number of Future Methods**
 Limit: 50
 Description: The maximum number of future method invocations allowed within a single execution context.
-**15. Total Number of Batch Apex Jobs Queued or Active**
+- **15. Total Number of Batch Apex Jobs Queued or Active**
 Limit: 5
 Description: The maximum number of batch jobs that can be queued or active simultaneously in a single execution context.
-**16. Total Number of Push Notification Method Invocations**
+- **16. Total Number of Push Notification Method Invocations**
 Limit: 10
 Description: The maximum number of Messaging.pushNotification method invocations in a single execution context.
-**17. Total Number of Callouts (HTTP Requests or Web Services Calls) Time**
+- **17. Total Number of Callouts (HTTP Requests or Web Services Calls) Time**
 Limit: 120 seconds (Synchronous) / 300 seconds (Asynchronous)
 Description: The maximum time allowed for all callouts within a single execution context.
-**18. Total Number of Process Builder Processes or Flows Invoked**
+- **18. Total Number of Process Builder Processes or Flows Invoked**
 Limit: No specific limit; limited by other factors such as the number of DML statements or SOQL queries.
 These limits ensure that resources are not overused by any single execution context and help maintain the stability and performance of the Salesforce platform.
 
