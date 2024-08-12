@@ -1,6 +1,7 @@
 
 
-|| **Governor Limit**                                 || **Execution Context-Level Limit**                                      || **Transaction-Level Limit**                                        ||
+| **Governor Limit**                                 | **Execution Context-Level Limit**                                    | **Transaction-Level Limit**                                      |
+|----------------------------------------------------|------------------------------------------------------------------------|---------------------------------------------------------------------|
 | **Total Number of SOQL Queries**                   | 100 (Synchronous) / 200 (Asynchronous)                                 | 100 (Synchronous) / 200 (Asynchronous)                              |
 | **Total Number of Records Retrieved by SOQL**      | 50,000                                                                 | 50,000                                                              |
 | **Total Number of DML Statements**                 | 150                                                                    | 150                                                                 |
